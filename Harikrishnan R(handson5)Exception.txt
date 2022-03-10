@@ -1,0 +1,167 @@
+1)
+
+
+package com.handson5;
+import java.util.Scanner;
+public class Main5 {
+
+	public static void main(String[] args) {
+		Scanner s=new Scanner(System.in);
+		try {
+			System.out.println("enter number of overs");
+			int i=s.nextInt();
+			int sc[]=new int[i];
+			System.out.println(" enter runs of each over");
+			for(int j=0;j<i;j++) {
+				sc[j]=s.nextInt();
+			}
+			System.out.println(" enter over number");
+			int k=s.nextInt();
+			System.out.println(sc[k-1]);
+			
+			}
+		catch(ArrayIndexOutOfBoundsException | NegativeArraySizeException e){
+			System.out.println(e.getClass());
+			
+		}
+
+	}
+
+}
+
+
+
+
+2)
+
+
+
+
+package com.handson5;
+
+import java.util.Scanner;
+
+
+class CustomException extends Exception{
+	private int details;
+
+	public CustomException(int details) {
+		super();
+		this.details = details;
+	}
+
+	
+	}
+
+public class Main6 {
+	static void compute(int a) throws CustomException {
+		   
+		   if(a<19 || a>39) {
+			   throw new CustomException(a);
+			   
+			   
+		   }}
+        public static void main(String[] args){
+		Scanner s=new Scanner(System.in);
+	    String name=s.nextLine();
+	    try {
+	    int age=s.nextInt();
+	    compute(age);
+	    System.out.println("Name:"+name);
+	    System.out.println("age:"+age);
+	    	
+	    }
+	    catch(CustomException e) {
+	    	System.out.println("InvalidAgeRangeException");
+	    }
+	    
+	    }
+	}
+
+
+
+
+3)
+
+
+
+package com.handson5;
+
+import java.util.Scanner;
+
+
+class CustomException1 extends Exception{
+	private int details;
+
+	public CustomException1(int details) {
+		super();
+		this.details = details;
+	}
+
+	
+	}
+
+public class Main7 {
+	static void compute(int a) throws CustomException1 {
+		   
+		   if(a==0) {
+			   throw new CustomException1(a);
+			   
+			   
+		   }}
+        public static void main(String[] args){
+		Scanner s=new Scanner(System.in);
+		
+		
+		try {
+			String[] sc= {"Chennai Super Kings","Mumbai Indians","Delhi Daredevils","Deccan Chargers","Kolkata Knight Riders","Kings XI Punjab","Rajasthan Royals","Royal Challengers Bangalore"};
+		
+			int k=0;
+			System.out.println("enter winner :");
+		String win=s.nextLine();
+		     for(int i=0;i<8;i++) {
+		    	 if(sc[i].equals(win)) {
+		    		 k=1;
+		    		 break;
+		    	 }
+		    	 else {
+		    		 k=0;
+		    	 }
+		     }
+		    	compute(k); 
+		System.out.println("enter loser :");
+		String loss=s.nextLine();
+	     for(int i=0;i<8;i++) {
+	    	 if(sc[i].equals(loss)) {
+	    		 k=1;
+	    		 break;
+	    		 
+	    	 }
+	    	 else
+	    	 {
+	    		 k=0;
+	    	 }
+	     }
+	     compute(k);
+	     
+	     System.out.println("winner :"+win);
+	     System.out.println("loser :"+loss);
+		
+	    	
+	    }
+	    catch(CustomException1 e) {
+	    	System.out.println("TeamNameNotFoundException");
+	    }
+	    
+	    }
+	}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,547 @@
+mysql> create table product(product_id int primary key, productname varchar(30),brand varchar(30),qty int,price double);
+Query OK, 0 rows affected (0.08 sec)
+
+
+mysql> describe product;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| product_id  | int         | NO   | PRI | NULL    |       |
+| productname | varchar(30) | YES  |     | NULL    |       |
+| brand       | varchar(30) | YES  |     | NULL    |       |
+| qty         | int         | YES  |     | NULL    |       |
+| price       | double      | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+
+
+
+
+
+
+
+package com.day15;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class ConnectionUtil {
+    
+	public static Connection getConnection() {
+		Connection con=null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			 con=DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc","root","root");
+			
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		
+			
+		
+		
+		return con;	
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package com.day15;
+
+public class Product {
+private int product_id;
+private String productname;
+private String  brand;
+private int  qty;
+private double price;
+public int getProduct_id() {
+	return product_id;
+}
+public void setProduct_id(int product_id) {
+	this.product_id = product_id;
+}
+public String getProductname() {
+	return productname;
+}
+public void setProductname(String productname) {
+	this.productname = productname;
+}
+public String getBrand() {
+	return brand;
+}
+public void setBrand(String brand) {
+	this.brand = brand;
+}
+public int getQty() {
+	return qty;
+}
+public void setQty(int qty) {
+	this.qty = qty;
+}
+public double getPrice() {
+	return price;
+}
+public void setPrice(double price) {
+	this.price = price;
+}
+public Product(int product_id, String productname, String brand, int qty, double price) {
+	super();
+	this.product_id = product_id;
+	this.productname = productname;
+	this.brand = brand;
+	this.qty = qty;
+	this.price = price;
+}
+public Product() {
+	super();
+	
+}
+
+}
+
+
+
+
+
+
+package com.day15;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Example4 {
+
+	public static void main(String[] args) {
+	  Scanner s=new Scanner(System.in);
+	  System.out.println("#######Product Information#######");
+	  int choice;
+	  do {
+		  System.out.println("1.insert product");
+		  System.out.println("2.update product");
+		  System.out.println("3.delete product");
+		  System.out.println("4.select product");
+		  System.out.println("5. exit");
+		  System.out.println("enter the choice");
+		  choice=Integer.parseInt(s.nextLine());
+		  
+		  switch(choice) {
+		  case 1:
+			  System.out.println("product name");
+			  String name=s.nextLine();
+			  System.out.println("Brand name");
+			  String Brand=s.nextLine();
+			  System.out.println("enter Quantity");
+			  int qty=Integer.parseInt(s.nextLine());
+			  System.out.println("enter price");
+			  double price=Double.parseDouble(s.nextLine());
+			 
+			  Random r=new Random();
+			  int product_id=r.nextInt(99999)+10000;
+			  Connection con =null;
+			  try {
+				   con= ConnectionUtil.getConnection();
+				  PreparedStatement ps =con.prepareStatement("insert into product values(?,?,?,?,?)");
+				  ps.setInt(1, product_id);
+				  ps.setString(2,name);
+				  ps.setString(3, Brand);
+				  ps.setInt(4, qty);
+				  ps.setDouble(5,price);
+				  int no_of_rows=ps.executeUpdate();
+				  if(no_of_rows==1) {
+					  System.out.println("product record updated successfully");
+				  }
+				  
+			  }catch(Exception e) {
+				  System.out.println(e);
+				  
+			  }
+			  finally {
+					if(con !=null) {
+						try {
+						con.close();}
+						catch(SQLException e) {
+							e.printStackTrace();
+						}}}
+			  
+				  
+			  break;
+		  case 2:
+			  System.out.println("enter product id");
+			  int P_id=Integer.parseInt(s.nextLine());
+			  System.out.println("enter new product name");
+			  String P_name=s.nextLine();
+			  System.out.println("enter new product brand");
+			  String p_brand=s.nextLine();
+			  System.out.println("enter new quantity");
+			  int qty1=Integer.parseInt(s.nextLine());
+			  System.out.println("enter new price");
+			  double price1=Double.parseDouble(s.nextLine());
+			  
+			  Connection con1=null;
+             try {
+            	 
+            	 con1=ConnectionUtil.getConnection();
+            	 PreparedStatement ps1=con1.prepareStatement("update product set  productname=?,brand=?, qty=?,price=? where product_id=?");
+            	 ps1.setString(1, P_name);
+            	 ps1.setString(2,  p_brand);
+            	 ps1.setInt(3, qty1);
+            	 ps1.setDouble(4, price1);
+            	 ps1.setInt(5,  P_id);
+                 int rows=ps1.executeUpdate();
+                 if(rows==1) {
+                	 System.out.println("new product updated successfully");
+                 }
+         }
+		    catch(Exception e) {
+			System.out.println(e);
+		}
+           finally {
+		   if(con1 !=null) {
+			try {
+			con1.close();}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}}}
+   
+			  break;
+		  case 3:
+			  
+			  System.out.println("enter product id");
+			  int pro_id=Integer.parseInt(s.nextLine());
+
+			  Connection con2=null;
+			  try {
+				  con2=ConnectionUtil.getConnection();
+				  PreparedStatement ps2=con2.prepareStatement("delete from product where product_id=?");
+				  ps2.setInt(1, pro_id);
+				  int deletedRow=ps2.executeUpdate();
+				  if(deletedRow==1)
+					  System.out.println("product deleted successfully");
+	  		  }
+			  catch(Exception e) {
+				  System.out.println(e);
+			  }
+	           finally {
+	    		   if(con2 !=null) {
+	    			try {
+	    			con2.close();}
+	    			catch(SQLException e) {
+	    				e.printStackTrace();
+	    			}}}
+			  break;
+		  case 4:
+			  Connection con3=null;
+			  try {
+				  con3=ConnectionUtil.getConnection();
+				 Statement st=con3.createStatement();
+				 ResultSet rs=st.executeQuery("select * from product");
+				 List<Product> l=new ArrayList<>();
+				 
+				 while(rs.next()) {
+					 Product p=new Product();
+					 p.setProduct_id(rs.getInt(1));
+					 p.setProductname(rs.getString(2));
+					 p.setBrand(rs.getNString(3));
+					 p.setQty(rs.getInt(4));
+					 p.setPrice(rs.getDouble(5));
+					 l.add(p); 
+				 }
+				 System.out.printf("%15s %20s %20s %5s %10s\n",
+						 "ProductID","ProductName","Brand","Quantity","Price");
+				 
+				 for(Product p:l) {
+					 System.out.printf("%15s %20s %20s %5s %10s\n",
+					     p.getProduct_id(),p.getProductname(),p.getBrand(),p.getQty(),p.getPrice());
+				 }
+				  
+				  
+			  }
+			  catch(Exception e) {
+				  System.out.println(e);
+				  
+			  }
+			  finally {
+	    		   if(con3 !=null) {
+	    			try {
+	    			con3.close();}
+	    			catch(SQLException e) {
+	    				e.printStackTrace();
+	    			}}}
+			  break;
+		  case 5:
+			  System.exit(0);
+			  break;
+		  
+		  }
+		  
+	  }while(choice<5);
+
+	}
+
+}
+
+
+
+
+#######Product Information#######
+1.insert product
+2.update product
+3.delete product
+4.select product
+5. exit
+enter the choice
+1
+product name
+soap
+Brand name
+hamam
+enter Quantity
+4
+enter price
+100
+product record updated successfully
+1.insert product
+2.update product
+3.delete product
+4.select product
+5. exit
+enter the choice
+1
+product name
+toothpaste
+Brand name
+colcate
+enter Quantity
+2
+enter price
+50
+product record updated successfully
+1.insert product
+2.update product
+3.delete product
+4.select product
+5. exit
+enter the choice
+1
+product name
+oil
+Brand name
+sunflower
+enter Quantity
+1
+enter price
+120
+product record updated successfully
+1.insert product
+2.update product
+3.delete product
+4.select product
+5. exit
+enter the choice
+1
+product name
+pen
+Brand name
+cello
+enter Quantity
+5
+enter price
+50
+product record updated successfully
+1.insert product
+2.update product
+3.delete product
+4.select product
+5. exit
+enter the choice
+1
+product name
+pencil
+Brand name
+apsara
+enter Quantity
+4
+enter price
+10
+product record updated successfully
+1.insert product
+2.update product
+3.delete product
+4.select product
+5. exit
+enter the choice
+
+
+
+
+
+
+
+
+mysql> select * from product;
++------------+-------------+-----------+------+-------+
+| product_id | productname | brand     | qty  | price |
++------------+-------------+-----------+------+-------+
+|      22935 | oil         | sunflower |    1 |   120 |
+|      41831 | pencil      | apsara    |    4 |    10 |
+|      62613 | pen         | cello     |    5 |    50 |
+|     106551 | toothpaste  | colcate   |    2 |    50 |
+|     107130 | soap        | hamam     |    4 |   100 |
++------------+-------------+-----------+------+-------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+
+
+#######Product Information#######
+1.insert product
+2.update product
+3.delete product
+4.select product
+5. exit
+enter the choice
+2
+enter product id
+22935
+enter new product name
+cholate
+enter new product brand
+dairymilk
+enter new quantity
+2
+enter new price
+80
+new product updated successfully
+1.insert product
+2.update product
+3.delete product
+4.select product
+5. exit
+enter the choice
+
+
+
+
+
+mysql> select * from product;
++------------+-------------+-----------+------+-------+
+| product_id | productname | brand     | qty  | price |
++------------+-------------+-----------+------+-------+
+|      22935 | cholate     | dairymilk |    2 |    80 |
+|      41831 | pencil      | apsara    |    4 |    10 |
+|      62613 | pen         | cello     |    5 |    50 |
+|     106551 | toothpaste  | colcate   |    2 |    50 |
+|     107130 | soap        | hamam     |    4 |   100 |
++------------+-------------+-----------+------+-------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+1.insert product
+2.update product
+3.delete product
+4.select product
+5. exit
+enter the choice
+3
+enter product id
+62613
+product deleted successfully
+
+
+
+mysql> select * from product;
++------------+-------------+-----------+------+-------+
+| product_id | productname | brand     | qty  | price |
++------------+-------------+-----------+------+-------+
+|      22935 | cholate     | dairymilk |    2 |    80 |
+|      41831 | pencil      | apsara    |    4 |    10 |
+|     106551 | toothpaste  | colcate   |    2 |    50 |
+|     107130 | soap        | hamam     |    4 |   100 |
++------------+-------------+-----------+------+-------+
+4 rows in set (0.00 sec)
+
+
+
+1.insert product
+2.update product
+3.delete product
+4.select product
+5. exit
+enter the choice
+4
+      ProductID          ProductName                Brand Quantity      Price
+          22935              cholate            dairymilk     2       80.0
+          41831               pencil               apsara     4       10.0
+         106551           toothpaste              colcate     2       50.0
+         107130                 soap                hamam     4      100.0
+1.insert product
+2.update product
+3.delete product
+4.select product
+5. exit
+
+
+
+
+1.insert product
+2.update product
+3.delete product
+4.select product
+5. exit
+enter the choice
+5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

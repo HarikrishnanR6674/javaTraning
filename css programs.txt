@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+body
+
+{
+
+background-color:#b0c4de;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+ 
+
+<h1>My CSS web page!</h1>
+
+<p>Hello world! This is a example.</p>
+
+ 
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+h1
+
+{
+
+background-color:#6495ed;
+
+}
+
+p
+
+{
+
+background-color:#e0ffff;
+
+}
+
+div
+
+{
+
+background-color:#b0c4de;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+ 
+
+<h1>CSS background-color example!</h1>
+
+<div>
+
+This is a text inside a div element.
+
+<p>This paragraph has its own background color.</p>
+
+We are still in the div element.
+
+</div>
+
+ 
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+body {color:red;}
+
+h1 {color:#00ff00;}
+
+p#ex {color:rgb(0,0,255);}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<h1>This is heading 1</h1>
+
+<p>This is an ordinary paragraph. Notice that this text is red. The default text-color for a page is defined in the body selector.</p>
+
+<p id="ex">This is a paragraph with class="ex". This text is blue.</p>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+h1 {text-align:center;}
+
+p.date {text-align:right;}
+
+p.main {text-align:justify;}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<h1>CSS text-align Example</h1>
+
+<p class="date">May, 2009</p>
+
+<p class="main">In my younger and more vulnerable years my father gave me some advice that I've been turning over in my mind ever since. 'Whenever you feel like criticizing anyone,' he told me,
+
+'just remember that all the people in this world haven't had the advantages that you've had.'</p>
+
+<p><b>Note:</b> Resize the browser window to see how the value "justify" works.</p>
+
+</body>
+
+ 
+
+</html>
+
+ 
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+h1 {text-decoration:overline;}
+
+h2 {text-decoration:line-through;}
+
+h3 {text-decoration:underline;}
+
+h4 {text-decoration:blink;}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<h1>This is heading 1</h1>
+
+<h2>This is heading 2</h2>
+
+<h3>This is heading 3</h3>
+
+<h4>This is heading 4</h4>
+
+<p><b>Note:</b> The "blink" value is not supported in IE, Chrome, or Safari.</p>
+
+</body>
+
+ 
+
+</html>
+
+ 
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+p {text-indent:50px;}
+
+</style>
+
+</head>
+
+<body>
+
+ 
+
+<p>In my younger and more vulnerable years my father gave me some advice that I've been turning over in my mind ever since. 'Whenever you feel like criticizing anyone,' he told me, 'just remember that all the people in this world haven't had the advantages that you've had.'</p>
+
+ 
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+a:link {color:#FF0000;}    /* unvisited link */
+
+a:visited {color:#00FF00;} /* visited link */
+
+a:hover {color:#FF00FF;}   /* mouse over link */
+
+a:active {color:#0000FF;}  /* selected link */
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<p><b><a href="default.asp" target="_blank">This is a link</a></b></p>
+
+<p><b>Note:</b> a:hover MUST come after a:link and a:visited in the CSS
+
+definition in order to be effective.</p>
+
+<p><b>Note:</b> a:active MUST come after a:hover in the CSS definition in order
+
+to be effective.</p>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+a.one:link {color:#ff0000;}
+
+a.one:visited {color:#0000ff;}
+
+a.one:hover {color:#ffcc00;}
+
+ 
+
+a.two:link {color:#ff0000;}
+
+a.two:visited {color:#0000ff;}
+
+a.two:hover {font-size:150%;}
+
+ 
+
+a.three:link {color:#ff0000;}
+
+a.three:visited {color:#0000ff;}
+
+a.three:hover {background:#66ff66;}
+
+ 
+
+a.four:link {color:#ff0000;}
+
+a.four:visited {color:#0000ff;}
+
+a.four:hover {font-family:monospace;}
+
+ 
+
+a.five:link {color:#ff0000;text-decoration:none;}
+
+a.five:visited {color:#0000ff;text-decoration:none;}
+
+a.five:hover {text-decoration:underline;}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<p>Mouse over the links to see them change layout.</p>
+
+ 
+
+<p><b><a class="one" href="default.asp" target="_blank">This link changes color</a></b></p>
+
+<p><b><a class="two" href="default.asp" target="_blank">This link changes font-size</a></b></p>
+
+<p><b><a class="three" href="default.asp" target="_blank">This link changes background-color</a></b></p>
+
+<p><b><a class="four" href="default.asp" target="_blank">This link changes font-family</a></b></p>
+
+<p><b><a class="five" href="default.asp" target="_blank">This link changes text-decoration</a></b></p>
+
+</body>
+
+ 
+
+</html>
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+table, td, th
+
+{
+
+border:1px solid green;
+
+}
+
+th
+
+{
+
+background-color:green;
+
+color:white;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<table>
+
+<tr>
+
+<th>Firstname</th>
+
+<th>Lastname</th>
+
+<th>Savings</th>
+
+</tr>
+
+<tr>
+
+<td>Peter</td>
+
+<td>Griffin</td>
+
+<td>$100</td>
+
+</tr>
+
+<tr>
+
+<td>Lois</td>
+
+<td>Griffin</td>
+
+<td>$150</td>
+
+</tr>
+
+<tr>
+
+<td>Joe</td>
+
+<td>Swanson</td>
+
+<td>$300</td>
+
+</tr>
+
+<tr>
+
+<td>Cleveland</td>
+
+<td>Brown</td>
+
+<td>$250</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+p.none {border-style:none;}
+
+p.dotted {border-style:dotted;}
+
+p.dashed {border-style:dashed;}
+
+p.solid {border-style:solid;}
+
+p.double {border-style:double;}
+
+p.groove {border-style:groove;}
+
+p.ridge {border-style:ridge;}
+
+p.inset {border-style:inset;}
+
+p.outset {border-style:outset;}
+
+p.hidden {border-style:hidden;}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<p class="none">No border.</p>
+
+<p class="dotted">A dotted border.</p>
+
+<p class="dashed">A dashed border.</p>
+
+<p class="solid">A solid border.</p>
+
+<p class="double">A double border.</p>
+
+<p class="groove">A groove border.</p>
+
+<p class="ridge">A ridge border.</p>
+
+<p class="inset">An inset border.</p>
+
+<p class="outset">An outset border.</p>
+
+<p class="hidden">A hidden border.</p>
+
+</body>
+
+ 
+
+</html>
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+p
+
+{
+
+color:blue;
+
+text-align:center;
+
+}
+
+.marked
+
+{
+
+background-color:red;
+
+}
+
+.marked p
+
+{
+
+color:white;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<p>This is a blue, center-aligned paragraph.</p>
+
+<div class="marked">
+
+<p>This p element should not be blue.</p>
+
+</div>
+
+<p>p elements inside a "marked" classed element keeps the alignment style, but has a different text color.</p>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+input:focus
+
+{
+
+background-color:yellow;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<form action="form_action.asp" method="get">
+
+First name: <input type="text" name="fname" /><br>
+
+Last name: <input type="text" name="lname" /><br>
+
+<input type="submit" value="Submit" />
+
+</form>
+
+ 
+
+<p><b>Note:</b> IE8 supports the :focus pseudo-class only if a !DOCTYPE is specified.</p>
+
+ 
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+p:first-child
+
+{
+
+color:blue;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<p>This is some text.</p>
+
+<p>This is some text.</p>
+
+<p><b>Note:</b> For :first-child to work in IE8 and earlier, a DOCTYPE must be declared.</p>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+p:first-letter
+
+{
+
+color:#ff0000;
+
+font-size:xx-large;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<p>You can use the :first-letter pseudo-element to add a special effect to the first character of a text!</p>
+
+</body>
+
+</html>
+
+ 
+
+0
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+p:first-line
+
+{
+
+color:#ff0000;
+
+font-variant:small-caps;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<p>You can use the :first-line pseudo-element to add a special effect to the first line of a text.</p>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+p:first-letter
+
+{
+
+color:#ff0000;
+
+font-size:xx-large;
+
+}
+
+p:first-line
+
+{
+
+color:#0000ff;
+
+font-variant:small-caps;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<p>You can combine the :first-letter and :first-line pseudo-elements to add a special effect to the first letter and the first line of a text!</p>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+h1:before {content:url(smiley.gif);}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<h1>This is a heading</h1>
+
+<p>The :before pseudo-element inserts content before an element.</p>
+
+<h1>This is a heading</h1>
+
+<p><b>Note:</b> IE8 supports the content property
+
+only if a !DOCTYPE is specified.</p>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+h1:after {content:url(smiley.gif);}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<h1>This is a heading</h1>
+
+<p>The :after pseudo-element inserts content after an element.</p>
+
+<h1>This is a heading</h1>
+
+<p><b>Note:</b> IE8 supports the content property only if a !DOCTYPE is specified.</p>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+CSS Universal Selector
+
+ 
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+<style>
+
+*{color:blue;}
+
+em {color: red}
+
+</style>
+
+</head>
+
+<body>
+
+<p>Lorem ipsum dolor <em>sit amet</em>, consectetur adipiscing elit. Donec a urna elit. <em>Integer</em> malesuada tempus enim nec rhoncus.</p>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+CSS DESCENDANT SELECTOR
+
+ 
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+<style>
+
+div em {
+
+color: red;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Example of <em>CSS</em> descendant selector.</h1>
+
+<div>
+
+<p>Lorem ipsum dolor sit amet, <em>consectetur</em> adipiscing elit. Donec a <em>urna</em> elit.</p>
+
+<p>Integer malesuada <em>tempus</em> enim nec rhoncus. Aenean tempus adipiscing porttitor.</p>
+
+</div>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+<style>
+
+div ul em {
+
+color: red;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div>
+
+<ul>
+
+<li><em>HTML</em> Tutorial</li>
+
+<li><em>CSS</em> Tutorial</li>
+
+<li><em>Javascript</em> Tutorial</li>
+
+</ul>
+
+</div>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+ 
+
+CSS CHILD SELECTOR
+
+ 
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+<style>
+
+p> em {
+
+color: red;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<p>Lorem ipsum dolor sit amet, <em>consectetur</em> adipiscing elit. Donec a <em>urna</em> elit.</p>
+
+</div>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+<style>
+
+div > p > span > em {
+
+color: red; 
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div>
+
+<p><span>Lorem ipsum dolor sit amet, <em>consectetur</em> adipiscing elit.</span> <span>Donec a <em>urna</em> elit.</span></p>
+
+</div>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+p > i:first-child
+
+{
+
+color:blue;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<p>I am a <i>strong</i> man. I am a <i>strong</i> man.</p>
+
+<p>I am a <i>strong</i> man. I am a <i>strong</i> man.</p>
+
+<p><b>Note:</b> For :first-child to work in IE8 and earlier, a DOCTYPE must be declared.</p>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+p:first-child i
+
+{
+
+color:blue;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<p>I am a <i>strong</i> man. I am a <i>strong</i> man.</p>
+
+<p>I am a <i>strong</i> man. I am a <i>strong</i> man.</p>
+
+<p><b>Note:</b> For :first-child to work in IE8 and earlier, a DOCTYPE must be declared.</p>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+CSS ADJACENT SIBLING SELECTOR
+
+ 
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+<style>
+
+h1 + h2 {
+
+color: red; 
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>w3resource CSS examples</h1>
+
+<h2>w3resource CSS CSS adjacent selectors examples</h2>
+
+<h2>w3resource CSS CSS adjacent selectors examples</h2>
+
+<h2>w3resource CSS CSS adjacent selectors examples</h2>
+
+</div>
+
+</body>
+
+</html>
+
+ 
+
+CSS General Sibiling Selector
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+<style>
+
+h1 ~ h2 {
+
+color: red; 
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>w3resource CSS examples</h1>
+
+<h2>w3resource CSS CSS adjacent selectors examples</h2>
+
+<h2>w3resource CSS CSS adjacent selectors examples</h2>
+
+<h2>w3resource CSS CSS adjacent selectors examples</h2>
+
+</div>
+
+</body>
+
+</html>
+
+ 
+
+<!DOCTYPE HTML >
+
+<html>
+
+<head>
+
+<style>
+
+.main {
+
+background-color: aliceblue; /* sets background color to aliceblue */
+
+}
+
+p.main + h4 {
+
+color: red; /* sets color to red */
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div>
+
+<p class="main">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a urna elit.</p>
+
+<h4>w3resource CSS examples.</h4>
+
+</div>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+[title]
+
+{
+
+color:blue;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<h2>Will apply to:</h2>
+
+<h1 title="Hello world">Hello world</h1>
+
+<a title="W3Schools" href="http://w3schools.com">W3Schools</a>
+
+<hr>
+
+<h2>Will not apply to:</h2>
+
+<p>Hello!</p>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+[title=W3Schools]
+
+{
+
+border:5px solid green;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<h2>Will apply to:</h2>
+
+<img title="W3Schools" src="w3schools_logo.gif" width="270" height="50" />
+
+<br>
+
+<a title="W3Schools" href="http://w3schools.com">W3Schools</a>
+
+<hr>
+
+<h2>Will not apply to:</h2>
+
+<p title="greeting">Hi!</p>
+
+<a class="W3Schools" href="http://w3schools.com">W3Schools</a>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+[title~=hello]
+
+{
+
+color:blue;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<h2>Will apply to:</h2>
+
+<h1 title="hello world">Hello world</h1>
+
+<p title="student hello">Hello CSS students!</p>
+
+<hr>
+
+<h2>Will not apply to:</h2>
+
+<p title="student">Hi CSS students!</p>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+[lang|=en]
+
+{
+
+color:blue;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<h2>Will apply to:</h2>
+
+<p lang="en">Hello!</p>
+
+<p lang="en-us">Hi!</p>
+
+<p lang="en-gb">Ello!</p>
+
+<hr>
+
+<h2>Will not apply to:</h2>
+
+<p lang="us">Hi!</p>
+
+<p lang="no">Hei!</p>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+[lang^=en]
+
+{
+
+color:blue;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<h2>Will apply to:</h2>
+
+<p lang="en">Hello!</p>
+
+<p lang="en-us">Hi!</p>
+
+<p lang="en-gb">Ello!</p>
+
+<hr>
+
+<h2>Will not apply to:</h2>
+
+<p lang="us">Hi!</p>
+
+<p lang="no">Hei!</p>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+[lang$=us]
+
+{
+
+color:blue;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<h2>Will apply to:</h2>
+
+<p lang="en">Hello!</p>
+
+<p lang="en-us">Hi!</p>
+
+<p lang="en-gb">Ello!</p>
+
+<hr>
+
+<h2>Will not apply to:</h2>
+
+<p lang="us">Hi!</p>
+
+<p lang="no">Hei!</p>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+[title*=hello]
+
+{
+
+color:blue;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<h2>Will apply to:</h2>
+
+<h1 title="hello world">Hello world</h1>
+
+<p title="student hello">Hello CSS students!</p>
+
+<hr>
+
+<h2>Will not apply to:</h2>
+
+<p title="student">Hi CSS students!</p>
+
+</body>
+
+</html>

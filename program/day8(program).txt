@@ -1,0 +1,508 @@
+1)
+package com.day8;
+
+import java.text.DateFormat;
+import java.util.Date;
+
+public class Example1 {
+
+	public static void main(String[] args) {
+		Date d=new Date();
+		System.out.println(d);
+		
+		
+		DateFormat df=DateFormat.getInstance();
+		System.out.println(df.format(d));
+		
+		
+		DateFormat df1=DateFormat.getDateInstance();
+		System.out.println(df1.format(d));
+		
+				
+		DateFormat df2=DateFormat.getTimeInstance();
+		System.out.println(df2.format(d));
+		
+		
+		DateFormat df3=DateFormat.getTimeInstance(DateFormat.LONG);
+		System.out.println(df3.format(d));
+		
+		
+		
+		DateFormat df4=DateFormat.getDateTimeInstance();
+		System.out.println(df4.format(d));
+		
+		
+		DateFormat df5=DateFormat.getDateTimeInstance(DateFormat.SHORT,DateFormat.FULL);
+		System.out.println(df5.format(d));
+		
+	
+		
+	}
+
+}
+
+
+
+
+
+2)package com.day8;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class Example2 {
+
+	public static void main(String[] args) {
+		Scanner s=new Scanner(System.in);
+		System.out.println("enter DOB");
+		String dat=s.nextLine();//dd-mm-yyyy
+		
+		SimpleDateFormat sdf=new SimpleDateFormat("dd-mm-yyyy");
+		Date d=null;
+		try {
+			d=sdf.parse(dat);
+			System.out.println(d);    //wed mar 17 10:16:20 IST 2021
+		}
+		catch(ParseException e){
+			System.out.println(e);
+			
+		}
+		
+		
+		
+		SimpleDateFormat sdf1=new SimpleDateFormat("MMM,dd yyy");
+		
+		System.out.println(sdf1.format(d));
+				
+		
+	}
+
+}
+
+
+
+
+
+3)
+
+package com.day8;
+
+public class Example3 {
+
+	public static void main(String[] args) {
+		Thread t=Thread.currentThread();
+		System.out.println(t);
+		t.setName("demothread");
+		System.out.println(t);
+		try {
+			for(int i=5;i>0;i--) {
+				System.out.println(i);
+				t.interrupt();    
+				Thread.sleep(1000);
+			 
+			}
+		}
+		catch(InterruptedException e) {
+			System.out.println("main thread interrupted");
+		}
+		
+
+	}
+
+}
+
+
+
+
+4)
+
+
+
+package com.day8;
+//this class just acts like chid thread class
+//but thread is not created. inorder to create Thread
+//we have to any one of 7 contructor
+class NewThread implements Runnable{
+    Thread t;  
+	
+	NewThread(){
+		t=new Thread(this,"demo thread");
+		System.out.println("child thread"+t);  //Thread[demo thread,5,main]
+		t.start(); //it create new child thread put in runnalbe stage 
+		          //and comes to main thread
+	}
+	
+	@Override
+	public void run() {
+		//operation of child thread
+		try {
+			for(int i=5;i>0;i--) {
+				System.out.println("child thread "+i);
+				Thread.sleep(500);
+			}
+		}
+	
+		catch(InterruptedException e) {
+			System.out.println("child tread interrupt");
+		}
+		System.out.println("exiting child thread");
+	
+	
+}}
+
+public class Example4 {
+
+	public static void main(String[] args) {
+		NewThread n=new NewThread();
+        try {
+        	
+        	for(int i=5;i>0;i--) {
+        		System.out.println("main thread "+i);
+        		Thread.sleep(1000);
+        	}
+        	
+        }
+		catch(InterruptedException e) {
+			
+			System.out.println("main thread interrupt");
+			
+			
+		}
+        System.out.println("main thread Exiting");
+		
+		
+		
+		
+		
+	}
+
+}
+
+
+
+5)
+
+package com.day8;
+
+
+class NewThread1 extends Thread{
+	
+	
+	NewThread1(){
+		super("demo thread");
+		System.out.println("child thread "+this);//Thread[demo thread,5,main]
+		start();
+	}
+	
+	public void run() {
+		try {
+			for(int i=5;i>0;i--) {
+				System.out.println("child thread "+i);
+				Thread.sleep(500);
+			}
+		}
+	
+		catch(InterruptedException e) {
+			System.out.println("child tread interrupt");
+		}
+		System.out.println("exiting child thread");
+		
+	}
+}
+
+public class Example5 {
+
+	public static void main(String[] args) {
+	NewThread1 n=new NewThread1();
+	try {
+    	
+    	for(int i=5;i>0;i--) {
+    		System.out.println("main thread "+i);
+    		Thread.sleep(1000);
+    	}
+    	
+    }
+	catch(InterruptedException e) {
+		
+		System.out.println("main thread interrupt");
+		
+		
+	}
+    System.out.println("main thread Exiting");
+	
+
+	}
+
+}
+
+
+6)
+
+package com.day8;
+class NewThread2 implements Runnable  {
+      Thread t;
+      String tname;
+	NewThread2(String name){
+		tname=name;
+		t=new Thread(this,name);
+		System.out.println("chid thread"+t);//Thread[one,5,main] Thread[two,5,main] Thread[three,5,main]
+		t.start();//starts one thread and put in runnable stage come to main method
+	}
+	
+	@Override
+	public void run() {
+		try {
+			for(int i=5;i>0;i--) {
+				System.out.println(tname+" "+i);
+				Thread.sleep(1000);
+			}
+		}
+		catch(InterruptedException e) {
+			System.out.println("chid threa interrupt");
+		}
+		System.out.println(tname+"exiting");
+		
+	}
+	
+	
+	
+	
+}
+
+public class Example6 {
+
+	public static void main(String[] args) {
+		NewThread2 n=new NewThread2("one");
+		NewThread2 n2=new NewThread2("two");
+		NewThread2 n3=new NewThread2("three");
+		System.out.println(n.t.isAlive());//true
+		System.out.println(n2.t.isAlive());//true
+		System.out.println(n3.t.isAlive());//true
+		
+		
+		try {
+			n.t.join();
+			n2.t.join();
+			n3.t.join();
+			
+		}
+		catch(InterruptedException e) {
+			System.out.println("main thread interrupt");
+		}
+		
+		System.out.println(n.t.isAlive());//false
+		System.out.println(n2.t.isAlive());//false
+		System.out.println(n3.t.isAlive());//false
+		
+		System.out.println("main thread exiting");
+		
+		
+
+	}
+
+}
+
+
+
+
+7)
+package com.day8;
+
+class A extends Thread{
+	public void run(){
+		
+		try {
+			for(int i=0;i<5;i++) {
+				System.out.println("from thread A "+i);
+				if(i==0)
+					yield();		
+			}	
+		}
+		catch(Exception e) {
+			System.out.println("thread A exception");
+		}
+		
+		System.out.println("exit thread A");
+	}
+}
+	
+class B extends Thread{
+		public void run(){
+			
+			try {
+				for(int j=0;j<5;j++) {
+					System.out.println("from thread B "+j);
+					if(j==3)
+						stop();	
+				}		
+			}
+			catch(Exception e) {
+				System.out.println("thread B exception");
+			}
+			System.out.println("exit thread B");
+			
+			
+		}
+}
+class C extends Thread{
+			public void run(){
+				
+				try {
+					for(int k=0;k<5;k++) {
+						System.out.println("from thread C "+k);
+						if(k==0)
+							sleep(1000);
+						
+					}	
+					
+				}
+				catch(Exception e) {
+					System.out.println("thread C exception");
+				}
+				
+				System.out.println("exit thread C");
+			}	
+	
+}
+
+public class Example7 {
+
+	public static void main(String[] args) {
+         A a=new A();
+         B b=new B();
+         C c=new C();
+         a.start();
+         b.start();
+         c.start();
+         c.setPriority(Thread.MAX_PRIORITY);  //10
+         b.setPriority(2);                   //2
+         a.setPriority(b.getPriority()+3);   //5
+            
+         System.out.println("end of main Thread");
+         
+         
+	}
+
+}
+
+
+8)
+
+package com.day8;
+
+class Callme{
+         void call(String msg) {
+		System.out.print("["+msg);
+	
+	try {
+		Thread.sleep(1000);
+	}
+	catch(InterruptedException e) {
+		System.out.println("interrupted");
+	}
+	System.out.println("]");}
+	
+	
+}
+class Caller implements Runnable{
+       String msg;
+       Callme target;
+       Thread t;
+	Caller(Callme targ,String s){
+		target=targ;
+		msg=s;
+		t=new Thread(this);
+		t.start();
+	}
+	
+	@Override
+	public void run() {
+		synchronized(target) {
+	     target.call(msg);}
+		
+	}
+	
+}
+
+public class Example8 {
+
+	public static void main(String[] args) {
+		
+		Callme target= new Callme();	
+		Caller ob1=new Caller(target,"Hello");
+		Caller ob2=new Caller(target,"Synchronized");
+		Caller ob3=new Caller(target,"World");
+		
+		try {
+			ob1.t.join();
+			ob2.t.join();
+			ob2.t.join();
+		}
+		catch(InterruptedException e) {
+			System.out.println("interrupted");
+		}	
+		
+
+	}
+
+}
+
+
+
+9)
+
+package com.day8;
+
+class Sample extends Thread {
+	public void run() {
+		System.out.println("child thread called ");
+	}
+	
+}
+
+public class Example9 {
+
+	public static void main(String[] args) {
+		Sample s=new Sample();
+		try {
+		s.start();
+		s.start();
+
+	}
+		catch(IllegalThreadStateException e)
+		{
+			System.out.println("IllegalThreadStateException");
+		}
+
+}}
+
+
+
+
+
+10)
+
+package com.day8;
+
+class SampleThread extends Thread{
+	public void run() {
+		System.out.println(Thread.currentThread().getName());
+		System.out.println(Thread.currentThread().isDaemon());
+	}
+	
+}
+public class Example10 {
+
+	public static void main(String[] args) {
+		SampleThread s1=new SampleThread();
+		SampleThread s2=new SampleThread();
+		s1.setDaemon(true);
+		s1.start();
+		s2.start();
+	}
+
+}
+
+

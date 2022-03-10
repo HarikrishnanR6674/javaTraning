@@ -1,0 +1,282 @@
+
+5. config
+
+       -- config is an implicit object of ServletConfig interface, used to access initialization parameter in jsp file
+
+       -- no need to configure jsp in web.xml, but if jsp takes init param then it is configured in web.xml using <jsp-file>
+
+<web-app>
+
+<servlet>
+
+     <servlet-name>config</servlet-name>
+
+     <jsp-file>/config.jsp</jsp-file>
+
+     <init-param>
+
+       <param-name>country</param-name>
+
+       <param-value>India</param-value>
+
+     </init-param>
+
+  </servlet>
+
+  <servlet-mapping>
+
+       <servlet-name>config</servlet-name>
+
+       <url-pattern>/config.jsp</url-pattern>
+
+  </servlet-mapping>
+
+</web-app>
+
+ 
+
+ 
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+
+    pageEncoding="ISO-8859-1"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<title>Insert title here</title>
+
+</head>
+
+<body>
+
+<%= config.getInitParameter("country") %>
+
+</body>
+
+</html>
+
+ 
+
+6. application
+
+         -- It is an implicit object of ServletContext interface, used to access application parameter configured in web.xml using <context-param>
+
+<web-app>
+
+<context-param>
+
+     <param-name>zipcode</param-name>
+
+     <param-value>600116</param-value>
+
+  </context-param>
+
+</web-app>
+
+ 
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+
+    pageEncoding="ISO-8859-1"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<title>Insert title here</title>
+
+</head>
+
+<body>
+
+<%= config.getInitParameter("country") %>
+
+<%= application.getInitParameter("zipcode") %>
+
+</body>
+
+</html>
+
+ 
+
+7. exception
+
+          -- exception is an implicit object of Throwable class
+
+          -- used to print exception info in error page
+
+ 
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+
+    pageEncoding="ISO-8859-1" errorPage="error.jsp"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<title>Insert title here</title>
+
+</head>
+
+<body>
+
+<%! int i=10; %>
+
+<% int j=i/0; %>
+
+</body>
+
+</html>
+
+ 
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+
+    pageEncoding="ISO-8859-1" isErrorPage="true"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<title>Insert title here</title>
+
+</head>
+
+<body>
+
+<%= exception %> <br/>
+
+<%= exception.getMessage() %>
+
+</body>
+
+</html>
+
+ 
+
+8. page
+
+       -- it is an implicit object of java.lang.Object class
+
+       -- used to access info abt the generated servlet
+
+       -- page object cannot be used directly, instead we have to use "this" or type cast by Servlet object
+
+ 
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+
+    pageEncoding="ISO-8859-1"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<title>Insert title here</title>
+
+</head>
+
+<body>
+
+<%= this.getServletInfo() %>
+
+</body>
+
+</html>
+
+ 
+
+9. pageContext
+
+         -- it is an implicit object of javax.servlet.jsp.PageContext class
+
+         -- used to get and set attributes in different scopes
+
+ 
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+
+    pageEncoding="ISO-8859-1"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<title>Insert title here</title>
+
+</head>
+
+<body>
+
+<%request.setAttribute("name","raj"); %>
+
+<%= request.getAttribute("name") %>
+
+<br/>
+
+<%pageContext.setAttribute("name1","ram",pageContext.REQUEST_SCOPE); %>
+
+<%= pageContext.getAttribute("name1",pageContext.REQUEST_SCOPE) %>
+
+<BR/>
+
+<%application.setAttribute("name2","sam"); %>
+
+<%= application.getAttribute("name2") %>
+
+<br/>
+
+<%pageContext.setAttribute("name3","ramu",pageContext.APPLICATION_SCOPE); %>
+
+<%= pageContext.getAttribute("name3",pageContext.APPLICATION_SCOPE) %>
+
+<BR/>
+
+</body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+Scopes
+
+   -- life time of object
+
+1. page (default)-- if I set as page scope, the object will be available only within the same page
+
+2. request -- if I set as request scope, the object will be available to which we are sending the request
+
+3. session -- if I set as session scope, the object will be available to which page participating the session
+
+4. application -- if I set as application scope, the object will be available throughot the appl

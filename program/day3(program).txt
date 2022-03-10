@@ -1,0 +1,680 @@
+1)
+
+package com.day3;
+
+class Box{
+                private double width;
+                private double height;
+                private double depth;
+                
+                Box(){
+                                width=-1;
+                                height=-1;
+                                depth=-1;
+                }
+                Box(double w,double h,double d){
+                                width=w;
+                                height=h;
+                                depth=d;
+                }
+                Box(int len){
+                                width=height=depth=len;
+                }
+                Box(Box ob){
+                                width=ob.width;
+                                height=ob.height;
+                                depth=ob.depth;
+                }
+                
+                double volume() {
+                                return width*height*depth;
+                }
+}
+
+class BoxWeight extends Box{
+                double weight;
+                
+                BoxWeight(){
+                                super();
+                                weight=-1;
+                }
+                BoxWeight(double w,double h,double d,double we){
+                                super(w,h,d);
+                                weight=we;
+                }
+                BoxWeight(int len,double we){
+                                super(len);
+                                weight=we;
+                }
+                BoxWeight(BoxWeight ob){
+                                super(ob);
+                                weight=ob.weight;
+                }
+                
+}
+
+class Shipment extends BoxWeight{
+                double cost;
+                
+                Shipment(){
+                                super();
+                                cost=-1;
+                }
+                Shipment(double w,double h,double d,double we,double c){
+                                super(w,h,d,we);
+                                cost=c;
+                }
+                Shipment(int len,double we,double c){
+                                super(len,we);
+                                cost=c;
+                }
+                Shipment(Shipment ob){
+                                super(ob);
+                                cost=ob.cost;
+                }
+}
+public class Example1 {
+
+                public static void main(String[] args) {
+      Shipment s1=new Shipment();
+      Shipment s2=new Shipment(1,2,3,4,5);
+      Shipment s3=new Shipment(3,6,9);
+      Shipment s4=new Shipment(s2);
+      double vol;
+      vol=s1.volume();
+      System.out.println("Volume is "+vol);
+      System.out.println("Weight is "+s1.weight);
+      System.out.println("Cost is "+s1.cost);
+      vol=s2.volume();
+      System.out.println("Volume is "+vol);
+      System.out.println("Weight is "+s2.weight);
+      System.out.println("Cost is "+s2.cost);
+      vol=s3.volume();
+      System.out.println("Volume is "+vol);
+      System.out.println("Weight is "+s3.weight);
+      System.out.println("Cost is "+s3.cost);
+      vol=s4.volume();
+      System.out.println("Volume is "+vol);
+      System.out.println("Weight is "+s4.weight);
+      System.out.println("Cost is "+s4.cost);
+                }
+
+}
+
+
+
+2)
+
+
+
+package com.day3;
+class A{
+	int i;
+}
+class B extends A{
+	int i;
+	B(int a,int b){
+		i=a;
+		super.i=b;
+	}
+	void show() {
+		System.out.println("i in A class"+ super.i);
+		System.out.println("i in B class"+i);
+	}
+}
+public class Example2 {
+
+	public static void main(String[] args) {
+		B b=new B(1,2);
+		b.show();
+	
+
+	}
+
+}
+
+
+
+
+
+
+
+3)package com.day3;
+class Sphere{
+	float volume() {
+		return 3.45f;
+	}
+class HemiSphere extends Sphere{	
+	float volume() {
+		//super.volume();
+		return 4.35f;
+	}
+}
+}
+
+public class Example3 {
+
+	public static void main(String[] args) {
+	/*HemiSphere h =new HemiSphere();
+	System.out.println(h.volume());*/
+	
+	Sphere s=new HemiSphere();
+	System.out.println(s.volume());
+	//hemisphere refrence is garbage collected
+	s=new Sphere();
+     System.out.println(s.volume());
+	}
+
+}
+
+
+
+
+4)
+package com.day3;
+class A1{
+	void callme() {
+		System.out.println("inside A call method");
+	}
+	
+}
+class B1 extends A1{
+	void callme() {
+		System.out.println("inside B1 call method");
+	}
+}
+class C1 extends A1{
+	void callme() {
+		System.out.println("inside C1 call method");
+	}
+}
+
+public class Example4 {
+
+	public static void main(String[] args) {
+		A1 a=new B1();
+		a.callme();
+		a=new C1();
+		a.callme();
+		a=new A1();
+		a.callme();
+	}
+
+}
+
+
+
+5)
+
+
+
+package com.day3;
+class Figure{
+	void area() {
+		System.out.println("figure area");
+	}}
+class Rectangle extends Figure{
+	void area() {
+		System.out.println("rectangle area");
+	}}
+class Triangle extends Figure{
+	void area() {
+		System.out.println("Triangle area");
+	}
+}
+
+
+public class Example5 {
+
+	public static void main(String[] args) {
+	
+       Figure f=new Rectangle();
+       f.area();
+       f=new Triangle();
+       f.area();
+       f=new Figure();
+       f.area();
+	}
+
+}
+
+
+
+
+6)
+
+package com.day3;
+class A2{
+	A2(int a){
+		System.out.println("1");
+	}
+	/*A2(){
+	System.out.println("0");     //if not use parameter contructor
+	}*/
+}
+class B2 extends A2{
+	B2()
+	{
+		super(10);    //use to invoke parametre constructor
+		System.out.println("2");
+	}
+}
+class C2 extends B2{
+	C2(){
+		System.out.println("3");
+	}
+}
+
+public class Example6 {
+
+	public static void main(String[] args) {
+		C2 c=new C2();
+		
+		
+
+	}
+
+}
+
+
+7)
+
+package com.day3;
+class X{
+	static{
+		System.out.println("1");
+	}
+	{
+		System.out.println("2");    //compound block
+	}
+	X(){
+		this(34);
+		System.out.println("3");
+	}
+	X(int a){
+		
+		System.out.println("4");
+	}
+	{
+		System.out.println("5");
+	}
+	static {
+		System.out.println("6");
+	}
+}
+
+class Y extends X{
+	{
+		System.out.println("7");
+	}
+	{
+		System.out.println("8");
+	}
+	Y(){
+		System.out.println("9");
+	}
+	Y(String s){
+		this();System.out.println("10");
+	}
+	static {
+		System.out.println("11");
+	}
+}
+class Z extends Y{
+	
+	static {
+		System.out.println("12");
+	}
+	Z(){
+		this(123);           //obj come here invoke par con int
+		System.out.println("13");}
+	{
+		System.out.println("14");
+		
+	}
+	Z(int a)
+	{	super("hello");    //
+		System.out.println("15");
+	}
+	{
+		System.out.println("16");
+	}
+	static {
+		System.out.println("17");
+	}
+}
+
+
+public class Example7 {
+	static {
+		System.out.println("18");    //executed first
+	}
+
+	public static void main(String[] args) {
+		System.out.println("19");    //after static block comes here
+		Z z=new Z();             //print 1st static class from X to Z
+		System.out.println("20");
+	
+	}
+	static {
+		System.out.println("21");     //2nd printed
+	}
+
+}
+
+
+9)
+
+package com.day3;
+import static java.lang.Math.*;
+import static java.lang.System.out;
+
+
+public class Example9 {
+
+	public static void main(String[] args) {
+		double d=sqrt(16);          //no need of variable.method for import static
+		out.println(d);    
+
+	}
+
+}
+
+
+10)
+
+package com.day3;
+class Test{
+	void add(int...a) {
+		for(int a1:a)
+			System.out.println(a1);
+	}
+	void add(String...s) {
+		  for(String s1:s)
+		System.out.println(s1);
+	}
+	void add(boolean b,int...a)
+{
+	System.out.println(b);
+	for(int a2:a)
+		System.out.println(a2);
+}
+}
+public class Example10 {
+
+	public static void main(String[] args) {       //instead of [] also ... accepted
+      Test t=new Test();
+      t.add(20,30);
+      t.add(1,2,3,4,5);
+      t.add(true,5,6);
+	}
+
+}
+
+
+11)
+
+package com.day3;
+
+public class Example11 {
+
+	public static void main(String[] args) {
+		System.out.println(args[1]);
+		for(int i=0;i<args.length;i++)
+            System.out.println(args[i]);
+	}
+
+} 
+
+
+12)
+
+package com.day3;
+abstract class A4{
+	 abstract void callme();
+	 void show()
+	 {
+		 System.out.println(" nomal method");
+	 }
+ }
+class B4 extends A4{
+	void callme() {
+		System.out.println(" implemetation of abstract method");   //implemetation of abtract method
+	}
+	
+}
+
+public class Example12 {
+
+	public static void main(String[] args) {
+		B4 b=new B4();
+		b.callme();
+		b.show();
+		
+
+	}
+
+}
+
+
+13)
+
+
+package com.day3;
+
+
+abstract class A5{
+	void show() {
+		System.out.println("hello");//for invoke this go for AIC
+	}
+	
+}
+
+public class Example13 {
+
+	public static void main(String[] args) {
+    A5 a=new A5() {	                   //anonymous inner class
+    	public void show() {
+    		System.out.println("hi"); //it print hi instead of hello
+    	}
+    };
+a.show();
+	}
+
+}
+
+
+14)
+
+
+package com.day3;
+
+interface arithmetic {
+	void operation(int c,int b); 
+		int c=14;
+	
+}
+class Test1 implements arithmetic{
+	public void operation(int a,int b) {   //public used to access interface method
+		System.out.println(a+b);
+		System.out.println(arithmetic.c);
+		
+	}
+	
+}
+class Test2 implements arithmetic{
+	public void operation(int a,int b) {
+		System.out.println(a-b);
+		System.out.println(arithmetic.c);
+	}
+	/*void show() {
+		System.out.println("normal method");
+	}*/
+}
+public class Example14 {
+
+	public static void main(String[] args) {
+		arithmetic a=new Test1();
+		a.operation(6,4);
+		a=new Test2();                 //to avoid memory waste go for DMD
+		a.operation(10, 5);	
+		//a.show();        //normal method
+
+	}
+
+}
+
+
+15)
+
+
+package com.day3;
+interface A6{
+	void meth1();
+}
+interface B6{
+	void meth2();
+}
+interface C6 extends A6,B6{
+	void meth3();
+}
+class Test3 implements C6{
+ public void meth1() {
+	 System.out.println("meth 1");
+ }
+ public void meth2() {
+	 System.out.println("meth 2");
+ }
+ public void meth3() {
+	 System.out.println("meth 3");
+ }
+  
+}
+public class Example15 {
+
+	public static void main(String[] args) {
+		Test3 t=new Test3();
+		t.meth1();
+		t.meth2();
+		t.meth3();
+
+	}
+
+}
+
+
+16)
+
+package com.day3;
+class Test5{
+	String str="";
+	Test5(String str){
+		this.str=str;
+	}
+	@Override          //right click , source ,generate toString
+	public String toString() {
+		return "Test5 [str=" + str + "]";    //used print some content
+	}
+	
+}
+
+public class Example16 {
+
+	public static void main(String[] args) {
+		Test5 t = new Test5("hello");    
+		System.out.println(t);    //if no toString it will print memory reference
+
+	}
+
+}
+
+
+17)
+
+package com.day3;
+
+public class Exmple17 {
+
+	public static void main(String[] args) {
+		String s1=new String("hello");
+		String s2=new String("hi");
+		String s3=new String("hello");
+		
+		System.out.println(s1.hashCode());
+		System.out.println(s2.hashCode());
+		System.out.println(s3.hashCode());
+
+          // s1 and s3 have same content so it produce same o/p
+	}
+
+}
+
+
+18)
+
+package com.day3;
+
+public class Example18 {
+
+	public static void main(String[] args) {
+		String s1=new String("hello");    //class
+		String s2=new String("hello");
+        System.out.println(s1.equals(s2));  //true
+        System.out.println(s1==s2);         //false
+        String s3=s2;
+        System.out.println(s2==s3);
+        
+        String s4 ="hello"; //literal   //if now then called as literal
+        String s5 ="hello";
+        System.out.println(s4.equals(s5));   //true
+        //==works like equals() if not using new operator
+        
+        System.out.println(s4==s5);    //true
+	}   
+
+}
+
+
+19)
+
+package com.day3;
+
+public class Example19 {
+
+	public static void main(String[] args) {
+		Example19 e=new Example19();
+		e=null;  //do garbage collection
+		System.out.println("calling garbage collector");
+		System.gc();
+		}
+	protected void finalize() {
+		System.out.println("finalize method");
+	}
+
+}
+
+
+20)
+
+package com.day3;
+class Test6{
+	
+}
+
+public class Example20 {
+
+	public static void main(String[] args) {
+		Test6 t=new Test6();
+		if(t instanceof Test6) {     
+			//instanceof used to check particular obj belonging to that class
+			System.out.println("True");
+		}
+        if(t instanceof Object) {
+        	System.out.println("true");
+        }
+	}
+
+}
+
+
+

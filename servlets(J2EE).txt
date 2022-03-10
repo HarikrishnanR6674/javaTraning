@@ -1,0 +1,333 @@
+J2EE
+
+Used to develop web oriented, secured, multithreaded application
+ 
+
+Any application we develop is based on Client – Server architecture
+
+ 
+
+Client – used to raise the request to server, many clients
+
+ 
+
+Server – used to process the request and give response. Only one server
+
+2 types
+
+Web server – used to handle only http request and http response like Apache Tomcat, Jetty etc
+
+Application Server – in order to handle http request there is a need for extra service like Firewall, FTP, DNS, DHCP etc, that all provide by application server. 
+
+For eg: Jboss, Oracle iPlanet, BEA weblogic, IBM Websphere
+    
+
+Directory Structure:
+
+       Project
+
+              -------- Java Resources
+
+                                     ------ src          - contains all Java files related to the project
+
+              -------- WebContent             - contains all HTML, CSS, JS, JSP, image files related to the project
+
+                                    ------- WEB-INF
+
+                                                    ----lib        - contains all external jar files related to the project
+
+                                                   ---- web.xml   - called as deployment descriptor which contains entire info about the project and first file invoked when
+
+                                                                               server starts                       
+
+ 
+
+Business logic layer – reside on server side to write business logic.
+
+ 
+
+J2EE Components
+
+   1. Servlets
+
+   2. JSP
+
+   3. EJB
+
+ 
+
+Servlets
+
+   -- It is a java program used to write business logic processing
+
+ 
+
+2 types of Servlets
+
+1. GenericServlet
+
+       -- protocol independent, it can be used for any type of protocol
+
+       -- Syntax:
+
+        public abstract class GenericServlet extends Object implements Servlet, ServletConfig
+
+ 
+
+       -- import javax.servlet.*;
+
+ 
+
+Life cycle of GenericServlet
+
+1. public void init(ServletConfig sc) throws IOException
+
+      -- optional, used for initialization purpose and it is invoked first and only once in the lifecycle of program
+
+2. public void service(ServletRequest req,ServletResponse res) throws ServletException, IOException
+
+     -- mandatory, used to write business logic
+
+3. public void destroy()
+
+      -- optional, used for deallocation of memory
+
+ 
+
+2. HttpServlet
+
+      -- protocol dependent, used only for http protocol
+
+      -- Syntax:
+
+   public abstract class HttpServlet extends GenericServlet
+
+      -- import javax.servlet.http.*;
+
+ 
+
+Lifecycle of HttpServlet
+
+1.init()
+
+   -- optional, used for initialization purpose and it is invoked first and only once in the lifecycle of program
+
+2. public void doGet(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+
+                      or
+
+   public void doPost(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+
+                      or
+
+   public void doPut(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+
+                      or
+
+   public void doDelete(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+
+                      or
+
+   public void doHead(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+
+                      or
+
+   public void doTrace(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+
+                      or
+
+   public void service(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+
+   -- mandatory, used to write business logic processing
+
+3.destroy()
+
+    -- optional, used for deallocation of memory
+
+ 
+
+ 
+
+doGet()
+
+1. If we have html prog without method attribute or we dont have a html program at all in that case it is get request then we have to write the logic inside doGet()
+
+2. In doGet() the parameters are transferred in the URL between ? and & (ie) query string
+
+3. doGet() can transfer only 2GB of data so doGet() is used for fetching purpose only
+
+ 
+
+doPost()
+
+1. We should have html program with method="post", then it is post request then we have write logic inside doPost()
+
+2. In doPost() the parameters are directly transferred from one page to another page through headers
+
+3. doPost() transfers unlimited data, so doPost() is used for storing purpose
+
+ 
+
+Step 1:
+
+Once u create servlet program
+
+1. comment @WebServlet line
+
+2. remove everything from doPost() and doGet()
+
+ 
+
+Step 2: write business logic
+
+response.setContentType("text/html"); - we can use html tags in servlet program
+
+ 
+
+PrintWriter pw=response.getWriter(); - used to print output on browser
+
+ 
+
+package com.pack;
+
+ 
+
+import java.io.IOException;
+
+import java.io.PrintWriter;
+
+ 
+
+import javax.servlet.ServletException;
+
+import javax.servlet.http.HttpServlet;
+
+import javax.servlet.http.HttpServletRequest;
+
+import javax.servlet.http.HttpServletResponse;
+
+ 
+
+/**
+
+* Servlet implementation class FirstServlet
+
+*/
+
+//@WebServlet("/FirstServlet")
+
+public class FirstServlet extends HttpServlet {
+
+                private static final long serialVersionUID = 1L;
+
+      
+
+    /**
+
+     * @see HttpServlet#HttpServlet()
+
+     */
+
+    public FirstServlet() {
+
+        super();
+
+        // TODO Auto-generated constructor stub
+
+    }
+
+ 
+
+                /**
+
+                * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+
+                */
+
+                protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+                                response.setContentType("text/html");
+
+                                PrintWriter pw=response.getWriter();
+
+                                pw.println("<b>Hello World</b>");
+
+                                System.out.println("Welcome to servlets");
+
+                                pw.close();
+
+                }
+
+                /**
+
+                * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+
+                */
+
+                protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+                               
+
+                }
+
+ 
+
+}
+
+ 
+
+http://localhost:8080/projectname
+
+ 
+
+http://localhost:8080/J2EEProject/com/pack/FirstServlet
+
+ 
+
+http://localhost:8080/J2EEProject/a/b/c/d/e/f/g/h/FirstServlet
+
+ 
+
+Step 3:
+
+Whenever u create a Servlet prg, it should be configured in web.xml
+
+ 
+
+<web-app>
+
+<servlet>
+
+   <servlet-name>FirstServlet</servlet-name>
+
+   <servlet-class>com.pack.FirstServlet</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+
+   <servlet-name>FirstServlet</servlet-name>
+
+   <url-pattern>/FirstServlet</url-pattern>
+
+</servlet-mapping>
+
+</web-app>
+
+ 
+
+ 
+
+Step 4:
+
+Run the servelet program
+
+http://localhost:8080/projectname/url pattern
+
+ 
+
+http://localhost:8080/J2EEProject/FirstServlet
+
+ 
+
+Instead of configuring in web.xml u can use @WebServle

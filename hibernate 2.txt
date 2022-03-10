@@ -1,0 +1,370 @@
+Types of Inheritance
+
+ 
+
+There are three types of inheritance mapping in hibernate
+1. Table per concrete class – for each entity class it creates separate table
+
+ 
+
+<!DOCTYPE hibernate-mapping PUBLIC
+
+          "-//Hibernate/Hibernate Mapping DTD 5.3//EN"
+
+          "http://hibernate.sourceforge.net/hibernate-mapping-5.3.dtd">
+
+ 
+
+<hibernate-mapping>
+
+<class name="com.pack.Employee" table="emp131">
+
+<id name="id">
+
+<generator class="increment"></generator>
+
+</id>
+
+      
+
+<property name="name"></property>
+
+<union-subclass name="com.pack.RegularEmployee" table="regemp131">
+
+<property name="salary"></property>
+
+<property name="bonus"></property>
+
+</union-subclass>
+
+          
+
+<union-subclass name="com.pack.ContractEmployee" table="contemp131">
+
+<property name="pay_per_hour"></property>
+
+<property name="duration"></property>
+
+</union-subclass>
+
+          
+
+</class>
+
+           
+
+</hibernate-mapping>
+
+**********using annotation**********
+
+Employee.java
+
+package com.pack;
+
+import javax.persistence.*;
+
+
+@Entity
+@Table(name="emp141")
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+
+public class Employee1 {
+	@Id
+	private int id;
+	
+	private String name;
+
+	
+	
+}
+
+RegularEmployee.java
+
+package com.pack;
+
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="ragemp141")
+@AttributeOverrides({
+	@AttributeOverride(name="id" ,column=@Column(name="id")),
+	@AttributeOverride(name="id" ,column=@Column(name="name"))
+})
+public class RegularEmployee1 extends Employee1 {
+	private double salary;
+	private double bonus;
+	
+	
+	
+}
+
+
+ContractEmployee.java
+
+
+package com.pack;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="conemp141")
+@AttributeOverrides({
+	@AttributeOverride(name="id" ,column=@Column(name="id")),
+	@AttributeOverride(name="id" ,column=@Column(name="name"))
+})
+public class ContractEmployee1 extends Employee1 {
+
+
+	private int pay_per_hour;
+	private int duration;
+	
+	
+	
+}
+
+
+ 
+
+
+
+2. Table per class hierarchy(Single Table Strategy) – for all entity class it creates a single table
+
+<!DOCTYPE hibernate-mapping PUBLIC
+
+          "-//Hibernate/Hibernate Mapping DTD 5.3//EN"
+
+          "http://hibernate.sourceforge.net/hibernate-mapping-5.3.dtd">
+
+ 
+
+<hibernate-mapping>
+
+<class name="com.pack.Employee" table="emp121" discriminator-value="emp">
+
+<id name="id">
+
+<generator class="increment"></generator>
+
+</id>
+
+          
+
+<discriminator column="emptype" type="string"></discriminator>
+
+<property name="name"></property>
+
+<subclass name="com.pack.RegularEmployee" discriminator-value="reg_emp">
+
+<property name="salary"></property>
+
+<property name="bonus"></property>
+
+</subclass>
+
+<subclass name="com.pack.ContractEmployee" discriminator-value="con_emp">
+
+<property name="pay_per_hour"></property>
+
+<property name="duration"></property>
+
+</subclass>
+
+          
+
+</class>
+
+</hibernate-mapping>
+
+**********using anotation************
+
+Employee.java
+
+package com.pack;
+
+
+@Entity
+@Table(name="emp122")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="emptype",discriminatorType=DiscriminatorType.STRING)
+@DiscriminatorValue(value="emp")
+public class Employee1 {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	
+	private String name;
+
+	
+	
+}
+
+RegularEmployee.java
+
+package com.pack;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+
+@Entity
+@DiscriminatorValue(value="reg_emp")
+public class RegularEmployee1 extends Employee1 {
+	private double salary;
+	private double bonus;
+	public double getSalary() {
+		return salary;
+	}
+		
+
+}
+
+ContractEmployee.java
+
+package com.pack;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue(value="reg_emp")
+public class ContractEmployee1 extends Employee1 {
+
+	private int pay_per_hour;
+	private int duration;
+	public int getPay_per_hour() {
+		return pay_per_hour;
+	}
+	
+	
+}
+
+
+
+
+
+3. Table per subclass – join each table using primary key and foreign key
+
+ 
+
+<!DOCTYPE hibernate-mapping PUBLIC
+
+          "-//Hibernate/Hibernate Mapping DTD 5.3//EN"
+
+          "http://hibernate.sourceforge.net/hibernate-mapping-5.3.dtd">
+
+ 
+
+<hibernate-mapping>
+
+<class name="com.pack.Employee" table="emp141">
+
+<id name="id">
+
+<generator class="increment"></generator>
+
+</id>
+
+      
+
+<property name="name"></property>
+
+<joined-subclass name="com.pack.RegularEmployee" table="regemp141">
+
+<key column="eid"/>
+
+<property name="salary"></property>
+
+<property name="bonus"></property>
+
+</joined-subclass>
+
+          
+
+<joined-subclass name="com.pack.ContractEmployee" table="contemp141">
+
+<key column="eid"/>
+
+<property name="pay_per_hour"></property>
+
+<property name="duration"></property>
+
+</joined-subclass>
+
+          
+
+</class>
+
+          
+
+</hibernate-mapping>
+
+
+*******using annotation********
+
+
+
+package com.pack;
+
+import javax.persistence.*;
+
+
+@Entity
+@Table(name="emp161")
+@Inheritance(strategy=InheritanceType.JOINED)
+
+public class Employee1 {
+	@Id
+	private int id;
+	
+	private String name;
+
+	
+	
+	
+}
+
+RegularEmployee.java
+
+
+
+package com.pack;
+
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="regemp161")
+@PrimaryKeyJoinColumn(name="id")
+public class RegularEmployee1 extends Employee1 {
+	private double salary;
+	private double bonus;
+	
+	
+}
+
+
+
+
+
+
+CotractEmployee
+
+package com.pack;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="contemp161")
+@PrimaryKeyJoinColumn(name="id")
+
+public class ContractEmployee1 extends Employee1 {
+
+
+	private int pay_per_hour;
+	private int duration;
+	
+	
+	
+}

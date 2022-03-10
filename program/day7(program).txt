@@ -1,0 +1,337 @@
+1)
+package com.day7;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+
+public class Example1 {
+	
+	
+	public static void main(String[] args) {
+		HashMap<String,Integer> hm =new HashMap<>();
+		//LinkedHashMap<String,Integer> hm =new LinkedHashMap<>();
+		//TreeMap<String,Integer> hm =new TreeMap<>();
+		System.out.println(hm.size());
+		
+		
+		hm.put("a", 10);
+		hm.put("h", 20);
+		hm.put("c", 25);
+		hm.put("a", 23);
+		hm.put("b", 24);
+		
+		System.out.println(hm.size());  //3
+		System.out.println(hm);
+		
+		System.out.println(hm.get("h"));  //20
+		hm.remove("h");
+		System.out.println(hm.get("h"));  //null
+		System.out.println(hm.containsKey("a")); //true
+		System.out.println(hm.containsValue(20));//false
+		
+		
+		//print separate value
+		//we can't directly Iterator in HashMap so covert HashMap to Set interface
+		Set s=hm.entrySet();  //convert both key and value to set interface
+		Iterator itr=s.iterator();
+		while(itr.hasNext()) {
+			Map.Entry me=(Map.Entry)itr.next();  //next return both key and value so use Map
+			System.out.println(me.getKey()+ " " +me.getValue());
+			System.out.println();
+			
+			Set s1=hm.keySet();   //covert only key
+			Iterator itr1=s1.iterator();
+			while(itr1.hasNext()) {
+				String key=(String)itr1.next();
+				System.out.println(key+" "+hm.get(key));
+			}
+			
+						
+		}
+			
+	}
+
+}
+
+
+
+2)
+
+
+package com.day7;
+
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Set;
+
+public class Example2 {
+
+	public static void main(String[] args) {
+		Hashtable<Integer,Double> ht=new Hashtable<>();
+		System.out.println(ht.size());
+		
+		ht.put(10, 3.14);
+		ht.put(2, 5.43);
+		ht.put(8, 6.12);
+		ht.put(5, 4.13);
+		ht.put(4, 1.12);
+		
+		System.out.println(ht.size()); //5
+		System.out.println(ht);
+		
+		Set s=ht.keySet();
+		Iterator itr =s.iterator();
+		while(itr.hasNext()) {
+			Integer i=(Integer)itr.next();
+					System.out.println(i+" "+ht.get(i));
+			
+		}	
+
+	}
+
+}
+
+
+3)
+
+
+package com.day7;
+
+import java.util.Iterator;
+import java.util.Properties;
+import java.util.Set;
+
+public class Example3 {
+
+	public static void main(String[] args) {
+		Properties p=new Properties();
+		p.put("a", "b");
+		p.put("c", "d");
+		p.put("e", "f");
+		p.put("g", "h");
+        System.out.println(p);
+        
+        
+        Set s=p.keySet();
+        Iterator itr=s.iterator();
+        while(itr.hasNext()) {
+        	String k=(String)itr.next();
+        	System.out.println(k+" "+p.getProperty(k));
+        	
+        	   	
+        }
+        
+        
+	}
+
+}
+
+
+
+
+5)
+
+
+
+package com.day7;
+
+import java.util.Arrays;
+
+public class Example5 {
+
+	public static void main(String[] args) {
+		int a[]= {0,-3,-6,-9,-12,-15,-18,-21,-24,-27};
+		
+		Arrays.sort(a);  //-27 -24 -21 -18 -15 -12 -9 -6 -3 0
+		
+		for(int a1:a) {
+			System.out.println(a1);
+		}
+		
+		
+		
+		
+		int i=Arrays.binarySearch(a,-9);
+		System.out.println(i);   //6
+		int j=Arrays.binarySearch(a, -11);//-(index)-1=-(6)-1 =-7 -->11 is b/w 9 to 12
+		System.out.println(j);
+		System.out.println(Arrays.binarySearch(a, -1));//-9-1=-10
+		
+		Arrays.sort(a,4,8);
+		for(int a2:a) {
+			System.out.println(a2);
+		}
+		
+		System.out.println();
+		Arrays.fill(a, 2);
+		for(int a3:a) {
+		System.out.println(a3);}
+		
+		System.out.println();
+		Arrays.fill(a, 2,6,3);
+		for(int a4:a) {
+			System.out.println(a4);
+		}
+		
+	
+	
+	}
+
+}
+
+
+
+
+
+8)
+
+
+package com.day7;
+
+import java.util.Iterator;
+import java.util.PriorityQueue;
+
+public class Example8 {
+
+	public static void main(String[] args) {
+	PriorityQueue<String> p=new PriorityQueue<>();
+	p.add("amit");
+	p.add("vinay");
+	p.add("kiri");
+	p.add("jaya");
+	p.add("ravi");
+	System.out.println(p.element());
+	System.out.println(p.peek());
+	
+	
+	
+	
+	Iterator itr=p.iterator();
+	while(itr.hasNext()) {
+		System.out.println(itr.next());
+	}
+	
+	
+	
+	
+	p.remove();
+	p.poll();
+	System.out.println("after removing");
+	Iterator itr1=p.iterator();
+	while(itr1.hasNext()) {
+		System.out.println(itr1.next());
+	}
+	
+
+	
+	}
+
+}
+
+
+
+
+
+9)
+
+
+
+
+package com.day7;
+
+import java.util.Date;
+
+public class Example9 {
+
+	public static void main(String[] args) {
+	Date d1=new Date();
+	System.out.println(d1);
+	
+	Date d2=new Date(1000000);
+	System.out.println(d2);
+	
+	System.out.println(d1.after(d2));
+	System.out.println(d1.before(d2));
+	System.out.println(d1.compareTo(d2));
+	System.out.println(d1.getTime());
+	
+
+	}
+
+}
+
+
+
+
+
+10)
+
+
+package com.day7;
+
+import java.util.Calendar;
+
+public class Example10 {
+
+	public static void main(String[] args) {
+	       String month[]= {"jan","feb","mar","apr","may","jun","jul","aug",
+	    		   "sep","oct","nov","dec"};
+	       Calendar c=Calendar.getInstance(); //current date and time
+	       c.set(2000, 3, 23,5,20,23);
+	       System.out.println("date :");
+	       System.out.println(month[c.get(Calendar.MONTH)]);
+	       System.out.println(c.get(Calendar.DATE));
+	       System.out.println(c.get(Calendar.YEAR));
+	       System.out.println("time :");
+	       System.out.println(c.get(Calendar.HOUR)+":"+c.get(Calendar.MINUTE) +
+	    		   ":"+c.get(Calendar.SECOND));
+	       
+           c.add(Calendar.HOUR, 2);
+           c.add(Calendar.MINUTE, 3);
+           c.add(Calendar.SECOND, 4);
+           System.out.println(c.get(Calendar.HOUR)+":"+c.get(Calendar.MINUTE) +
+        		   ":"+c.get(Calendar.SECOND));
+	            
+	       
+	       
+	}
+
+}
+
+
+
+
+
+11)
+
+
+package com.day7;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+public class Example11 {
+
+	public static void main(String[] args) {
+		String month[]= {"jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"};
+       // GregorianCalendar g= new GregorianCalendar();
+        GregorianCalendar g= new GregorianCalendar(2000,4,20,4,23,20);
+        System.out.println("date");
+        int year=g.get(Calendar.YEAR);
+        System.out.println(year+"-"+month[g.get(Calendar.MONTH)]+"-"+g.get(Calendar.DATE));
+		
+		
+		System.out.println("time");
+		 System.out.println(g.get(Calendar.HOUR)+":"+g.get(Calendar.MINUTE) + ":"+g.get(Calendar.SECOND));
+		if(g.isLeapYear(year))
+			System.out.println("is leap year");
+		else
+			System.out.println("not a leap year");
+			
+	
+			}
+
+}

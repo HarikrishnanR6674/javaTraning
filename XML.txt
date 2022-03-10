@@ -1,0 +1,148 @@
+XML
+
+  - XML stands for eXtensible Markup Language.
+
+  - XML was designed to store and transport data.
+
+  - XML was designed to be both human- and machine-readable.
+
+  - XML is often used for distributing data over the Internet.
+
+  - XML Does Not Use Predefined Tags (ie) user defined tags
+
+<b>hello</b> -in HTML  -hello in bold format  - display the data
+
+<b>hello</b> -in XML-  describe the data
+
+ 
+
+XML Simplifies Things
+
+It simplifies data sharing
+
+It simplifies data transport
+
+It simplifies platform changes
+
+It simplifies data availability
+
+Many computer systems contain data in incompatible formats. Exchanging data between incompatible systems (or upgraded systems) is a time-consuming task for web developers. 
+
+Large amounts of data must be converted, and incompatible data is often lost.
+
+ 
+
+XML stores data in plain text format. This provides a software- and hardware-independent way of storing, transporting, and sharing data.
+
+ 
+
+XML also makes it easier to expand or upgrade to new operating systems, new applications, or new browsers, without losing data.
+
+ 
+
+With XML, data can be available to all kinds of "reading machines" like people, computers, voice machines, news feeds, etc.
+
+ 
+
+ 
+
+XML Syntax Rules
+
+1. The XML Prolog <?xml version="1.0" encoding="UTF-8"?>
+
+2.XML Documents Must Have one Root Element
+
+3. All XML Elements Must Have a Closing Tag
+
+4. XML Tags are Case Sensitive
+
+5. XML Elements Must be Properly Nested
+
+6. XML Attribute Values Must Always be Quoted
+
+7. White-space is Preserved in XML
+
+8. <!-- This is a comment --> Comment statement
+
+ 
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<note>
+
+  <to>Tove</to>
+
+  <from>Jani</from>
+
+  <heading>Reminder</heading>
+
+  <body>Don't forget me this weekend!</body>
+
+</note>
+
+ 
+
+Building block of XML
+
+1. XML Element
+
+An element can contain:
+
+  - text
+
+           <hello>welcome<\hello>
+
+  - attributes
+
+<hello age="20">welcome</hello>
+
+  - other elements
+
+
+  - or a mix of the above
+
+ 
+
+XML elements must follow these naming rules:
+
+ 
+
+Element names are case-sensitive
+
+Element names must start with a letter or underscore
+
+Element names cannot start with the letters xml (or XML, or Xml, etc)
+
+Element names can contain letters, digits, hyphens, underscores, and periods
+
+Element names cannot contain spaces
+
+Avoid ".",":","-"
+
+ 
+
+2. XML Attribute
+
+Attributes are designed to contain data related to a specific element.
+
+Attribute values must always be quoted. Either single or double quotes can be used.
+
+attributes cannot contain multiple values (elements can)
+
+attributes cannot contain tree structures (elements can)
+
+attributes are not easily expandable (for future changes)
+
+ 
+
+2 types
+
+1. Well formed XML - follows 7 basic xml syntax rules
+
+2. Valid XML  - XML which contains DTD file
+
+ 
+
+ 
+
+ 

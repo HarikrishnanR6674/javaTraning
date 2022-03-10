@@ -1,0 +1,310 @@
+1)
+
+
+package com.day5;
+abstract class A{
+	
+}
+
+public class Example1 {
+
+	public static void main(String[] args) {
+		
+		//A a=new A()  -->wrong
+		try{
+		Class c=Class.forName("A");
+		A a=(A)c.newInstance(); //for create obj at run time
+		System.out.println(a);
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+}
+}
+
+
+
+2)
+
+
+package com.day5;
+
+import java.util.Scanner;
+
+class Student{
+	String name;
+	int age;
+	public Student(String name, int age) {
+		super();
+		this.name = name;
+		this.age = age;
+	}
+	
+	void display() {
+		System.out.println("name "+"age");
+	}
+		
+}
+
+public class Example2 {
+
+	public static void main(String[] args) {
+		Scanner s=new Scanner(System.in);   //ctrl+shift+o  --> to import 
+		System.out.println("enter name");
+        String name=s.nextLine();
+        System.out.println("enter age");
+        int age=s.nextInt();
+        Student st =new Student(name,age);
+        st.display();
+        
+        
+        
+        
+        
+	}
+
+}
+
+
+
+
+
+3)
+
+
+package com.day5;
+
+import java.util.Scanner;
+
+public class Example3 {
+
+	public static void main(String[] args) {
+		try {
+		Scanner s=new Scanner(System.in);
+		System.out.println("enter 1 num");
+		int a=s.nextInt();
+		System.out.println("enter num 2");
+		int b=s.nextInt();
+		int c=a/b;
+		System.out.println(c);
+		}
+		catch(ArithmeticException e) {
+			System.out.println("u can't div by 0");
+		}
+		
+		}
+
+}
+
+
+
+
+4)
+
+package com.day5;
+
+public class Example4 {
+
+	public static void main(String[] args) {
+      try {
+    	  int a=args.length;
+    	  System.out.println(a);
+    	  int b=10/a;
+    	 
+    	  int c[]= {1};
+    	 //c[50]=99;
+    	  int d=Integer.parseInt("abcd");
+    	  System.out.println(d);
+    	  
+
+	}
+      catch(ArithmeticException e) {
+    	  System.out.println(e); // if u print obj of any exception -->java.lang.AE
+    	  
+      }
+      
+      catch(ArrayIndexOutOfBoundsException e) {
+    	  System.out.println(e);     //AIOB
+      }
+      catch(Exception e) {     //if u don't know the name use as Exception
+    	  System.out.println(e);
+      }
+      
+
+}
+}
+
+
+
+
+5)
+
+package com.day5;
+
+public class Exaamole5 {
+     static void demo() {
+    	 throw new NullPointerException("example");
+    	 
+    	 
+     }
+	public static void main(String[] args) {
+		try {
+			demo();
+		}
+		catch(NullPointerException e) {
+			System.out.println("recaught "+e);
+		}
+
+	}
+
+}
+
+
+
+6)
+
+package com.day5;
+
+public class Example6 {
+	static void demoA(){
+		try {
+			System.out.println("inside demoA");
+			throw new RuntimeException();          //catch is in main method so it print finally  
+		}                                           //if catch block is here then execute catch and then go finally
+		finally {
+			System.out.println("inside demoA finally");
+		}
+	}
+	static void demoB() {
+		try {
+			System.out.println("inside demoB");
+			return;
+		}
+		finally
+		{
+			System.out.println("inside demoB finally");
+		}
+	}
+	static void demoC() {
+		try {
+			System.out.println("inside demoC");
+		}
+		finally {
+			System.out.println("inside demoC finally");
+		}
+	}
+	public static void main(String[] args) {
+		try {
+			demoA();
+		}
+        catch(RuntimeException e){
+        	System.out.println("Exeption caught");
+        	
+        }
+		demoB();
+		demoC();
+	}
+
+}
+
+
+7)
+
+package com.day5;
+
+public class Example7 {
+	static void throwDemo() throws NullPointerException{
+		System.out.println("inside throwsDemo");
+		throw new NullPointerException("demo");
+	}
+
+	public static void main(String[] args) {
+		try {
+			throwDemo();
+			
+		}
+		catch(NullPointerException e)
+		{
+			System.out.println("caught");
+		}
+	}
+
+}
+
+
+8)
+
+
+package com.day5;
+
+class MyException extends Exception{
+	private int details;
+
+	public MyException(int details) {
+		super();
+		this.details = details;
+	}
+
+	@Override
+	public String toString() {
+		return "MyException [details=" + details + "]";
+	}
+	
+	
+}
+
+
+public class Example8 {
+   static void compute(int a) throws MyException {
+	   
+	   System.out.println("called compute"+a);
+	   if(a>10) {
+		   throw new MyException(a);
+		   
+	   }
+	   System.out.println("normal Exit");
+	   
+   }
+	public static void main(String[] args) {
+		
+		
+		try {
+			compute(1);
+			compute(20);
+			
+			
+		}
+		catch(MyException e)
+		{
+			System.out.println("caught "+e);
+
+	}}
+
+}
+
+
+9)
+
+package com.day5;
+
+public class Example9 {
+	static double withdraw(int balance, int amount) {
+	try {
+		assert balance>amount;
+		System.out.println( balance-amount);
+		}
+	
+	catch(AssertionError e) {
+	System.out.println("low bal");	
+	}
+	return amount;
+	}
+	
+
+	public static void main(String[] args) {
+		withdraw(1000,500);
+		withdraw(1000,2000);
+
+	}
+
+}

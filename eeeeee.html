@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns ="http://www.w3.org 1999 xhtml" xml :lang="en">
+  <head>
+<script> 
+   function clickAndDisable(link) {
+     link.onclick = function(event) {
+        event.preventDefault();
+     }
+   }   
+</script>
+    <style>
+
+    
+
+     a:visited{
+       color:green;
+     }
+
+ 
+
+    </style>
+  </head>
+  <body>
+    <table width="500" align="center" border="5px solid">
+      <tr align="center" >
+  <a href="www.google.com" onclick="clickAndDisable(this);">Click here</a>
+                     
+     </tr>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+SDLC:
+1.Requirement collection:
+2.Feasibility analysis: within the company(requirement)
+3.Design:blueprint 
+4.Coding:implement from the blueprint-->module---->coding based on the architect
+5.Testing:based on the blueprint the test case ll be written 
+
+
+Login page 
+
+username:
+password:
+
+
+--->The test case ll be written in the excel sheet.
+
+  Ex: username, password ,click button,valid name ,special character
+
+--->manually the page ll be check by the tester by making the action in the certain page 
+
+---->In manual testing the failure in test case ll be mailed to the lead or the developer.
+
+6.maintainance-->changes in the developement ll occur in the changes.
+
+
+testcase template:
+
+login id 
+password id 
+
+testcase template
+
+TEST CASE ID : LOGIN_TC01
+MODULE: LOGIN PAGE
+
+TEST DATA: USERNAME: anbu
+                    :PASSWORD: anbu@123
+
+EXPECTED RESULT: Login SUCCESS
+ACTUAL RESULT: Login SUCCESS
+
+RESULT:PASS
+
+Steps :
+
+->open url
+
+->go to the login page 
+
+->enter the password
+
+->click on the submit button
+
+
+Manual Testing vs Automated Testing 
+
+
+Types of Testing
+
+      1.Whitebox Testing ---->testing done by developer by using junit.
+
+
+      2.Blackbox Testing ----->tester can perform this test
+
+1.functional Testing:Each and every component cen be check by invidualy like each element like button field.
+
+2.Integeration Testing:user interface checking like add to cart(relationship between two modules)
+
+3.system Testing:  E to E testing all the interface are working fine or not like that 
+
+4.Smoke Testing:  checking Url is working or not 
+
+5.Regression Testing :Automated testing only (contains 1000 of test cases contain in test suit )when the new build is added the test case also added 
+                                    --->finally the test should perform succesfully  with all the test cases
+
+       3.Performance Testing ---->performance of the application while more no of people usin the same 
+
+
+1.Load Testing ----->Jmeter,apache 
+
+2.Stress Testing------>jmeter
+
+      4.Compatability testing---->using different platforms checking 
+
+      5.Usability testing------>UI Neatnesss and user friendly.
+
+      6.Security Testing---->Privacy (cyberSecurity tools) Pin passwords -->Third party testers
+
+      7.Localization and Internalization------>process of adding cultural needs in th certain locality and design these into th entire project is known as this.
+
+ 
+
+
+
